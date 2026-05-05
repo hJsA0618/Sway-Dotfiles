@@ -1,0 +1,131 @@
+* {
+    font-family: "JetBrains Mono", "JetBrainsMono NF", "Font Awesome 6 Free", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/* --- BLOQUES IZQUIERDA (WORKSPACES) --- */
+#workspaces {
+    background-color: rgba(43, 48, 59, 0.85);
+    margin: 3px 0 3px 10px;
+    border-radius: 18px;
+    padding: 5px 8px; 
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: #ffffff;
+    background-color: transparent;
+    border-radius: 12px;
+    margin: 0 3px;
+}
+
+#workspaces button.focused {
+    background-color: #c792ea;
+    color: #1a1a2e;
+}
+
+/* --- BLOQUE CENTRAL (WINDOW) --- */
+#window {
+    background-color: rgba(43, 48, 59, 0.85);
+    color: #c792ea;
+    border-radius: 18px;
+    margin: 3px 0;
+    padding: 0 20px;
+    font-weight: 700;
+}
+
+/* --- BLOQUE DERECHO (SISTEMA) --- */
+#pulseaudio, 
+#power-profiles-daemon, 
+#backlight, 
+#battery, 
+#clock, 
+#tray {
+    background-color: rgba(43, 48, 59, 0.85);
+    padding: 0 10px;
+    margin: 3px 0;
+}
+
+.modules-right > widget:first-child > #pulseaudio {
+    border-radius: 18px 0 0 18px;
+}
+
+.modules-right > widget:last-child > #clock,
+.modules-right > widget:last-child > #tray {
+    border-radius: 0 18px 18px 0;
+    margin-right: 10px;
+}
+
+#battery.critical {
+    color: #ff5555;
+    background-color: rgba(43, 48, 59, 0.85);
+}
+
+/* --- REPRODUCTOR (EL FONDITO GRIS) --- */
+#reproductor {
+    background-color: rgba(43, 48, 59, 0.85);
+    margin: 3px 0 3px 10px;
+    border-radius: 18px;
+    padding: 0 8px; /* Padding equilibrado para centrar el contenido */
+}
+
+/* Estilo para los botones de control */
+#custom-prev, 
+#custom-playerctl, 
+#custom-next {
+    background-color: transparent; 
+    color: #c792ea; 
+    padding: 0 6px;
+    margin: 0;
+}
+
+/* --- SCRATCHPAD CENTRADO Y MORADO --- */
+#scratchpad {
+    background-color: transparent;
+    color: #c792ea; /* Morado brillante */
+    padding: 0 8px; /* Padding igual en ambos lados para centrar */
+    margin: 0;
+    min-width: 20px; /* Asegura un espacio mínimo para que no se vea apretado */
+}
+
+/* Estado cuando no hay nada (opcional: ponerlo un pelín más oscuro si prefieres) */
+#scratchpad.empty {
+    color: rgba(199, 146, 234, 0.5);
+}
+
+/* Animaciones y Estados */
+.controles-musica {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#custom-prev:active, 
+#custom-playerctl:active, 
+#custom-next:active {
+    padding-top: 4px;
+    color: #ffffff;
+}
+
+/* --- TOOLTIPS --- */
+tooltip {
+    background-color: rgba(43, 48, 59, 0.95);
+    border: 2px solid #c792ea;
+    border-radius: 12px;
+}
+
+tooltip label { 
+    color: #ffffff; 
+    padding: 8px; 
+}

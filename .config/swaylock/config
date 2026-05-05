@@ -1,0 +1,12 @@
+# Fondo de pantalla - Usando $HOME para portabilidad
+image=$HOME/.config/sway/wallpapers/1102269.jpg
+
+# Ajustar la imagen (fill, stretch, center, etc.)
+scaling=fill
+
+# Colores estéticos (opcional, estilo Amethyst/Miku)
+ring-color=c792ea
+key-hl-color=ffffff
+line-color=00000000
+inside-color=1a1a2e88
+separator-color=00000000

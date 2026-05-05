@@ -1,0 +1,87 @@
+configuration {
+    font: "JetBrainsMono Nerd Font Mono 12";
+    
+    /* Habilitar iconos globalmente */
+    show-icons: true;
+    
+    /* Usar el mismo tema que definiste en tu Sway config */
+    icon-theme: "Papirus-Dark";
+    
+    /* Modos: drun primero, luego combi */
+    modes: [ "drun", "combi" ];
+    combi-modes: [ "drun", "run" ];
+    
+    /* Formato de la lista: icono y luego nombre */
+    drun-display-format: "{icon} {name}";
+    
+    /* Ordenar por uso */
+    sort: true;
+    sorting-method: "fzf";
+    disable-history: false;
+
+    /* Etiquetas de modo */
+    display-drun: "Apps";
+    display-combi: "Combi";
+}
+
+/* --- ESTILO AMETHYST VERTICAL --- */
+
+* {
+	font: "JetBrainsMono Nerd Font 12";
+    bg: #1a1a2e;       /* Fondo oscuro profundo */
+    fg: #ffffff;       /* Texto blanco */
+    accent: #bf00ff;   /* Morado Neón */
+    border-color: @accent;
+}
+
+window {
+    background-color: @bg;
+    border: 4px;       /* Grosor igual al de tus ventanas en Sway */
+    width: 30%;        /* Un poco más angosto para la lista vertical */
+    padding: 15px;
+    border-radius: 12px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    padding: 10px;
+    background-color: @bg;
+}
+
+prompt {
+    background-color: @accent;
+    text-color: @bg;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+entry {
+    padding: 5px;
+    text-color: @fg;
+}
+
+/* LISTA DE ELEMENTOS (Modo Vertical) */
+listview {
+    columns: 1;        /* Lista simple hacia abajo */
+    lines: 10;         /* Muestra hasta 10 elementos */
+    spacing: 8px;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+    scrollbar: false;
+}
+
+element {
+    padding: 10px;     /* Más espacio para que sea fácil hacer clic */
+    border-radius: 8px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+element-icon {
+    size: 32px;
+    padding: 0 15px 0 0;
+}

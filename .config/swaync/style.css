@@ -1,0 +1,40 @@
+/* Estilo general */
+.notification {
+    border-radius: 12px;
+    margin: 8px;
+    background: #2a2a2a;
+    color: white;
+    padding: 15px; /* El padding fuerza a que el contenedor rodee el texto */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* El contenido debe ser flexible */
+.notification-content {
+    margin: 5px;
+}
+
+/* Forzar que el texto no se elipsice (los ...) */
+.notification-default-body {
+    margin-top: 5px;
+}
+
+/* El botón de expansión ahora sí debería funcionar con la config corregida */
+.notification-expand-button {
+    background: #444444; 
+    color: #eeeeee;
+    border-radius: 8px;
+    padding: 4px 12px;
+    margin: 5px;
+}
+
+.notification-expand-button:hover {
+    background: #555555;
+}
+
+/* Widgets */
+.widget-title, .widget-volume, .widget-backlight, .widget-mpris {
+    background: #333333;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}

@@ -1,0 +1,75 @@
+{
+    "positionX": "right",
+    "positionY": "top",
+    "notification-body-max-lines": 100,
+    "notification-summary-max-lines": 5,
+    "control-center-width": 450,
+    "control-center-height": 600,
+    "widgets": [
+        "title",
+        "buttons-grid",
+        "volume",
+        "backlight",
+        "notifications",
+        "mpris"
+    ],
+    "widget-config": {
+        "title": {
+            "text": "🎛️ Centro de Control",
+            "clear-all-button": true,
+            "button-text": "🧹 Limpiar todo"
+        },
+        "buttons-grid": {
+            "actions": [
+                {
+                    "label": "📡\nWiFi",
+                    "type": "toggle",
+                    "command": "nmcli radio wifi on && swaync-client -t",
+                    "command-off": "nmcli radio wifi off && swaync-client -t",
+                    "update-command": "nmcli radio wifi | grep -q 'enabled' && echo true || echo false"
+                },
+                {
+                    "label": "🎧\nBluetooth",
+                    "type": "toggle",
+                    "command": "bluetoothctl power on && swaync-client -t",
+                    "command-off": "bluetoothctl power off && swaync-client -t",
+                    "update-command": "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false"
+                },
+                {
+                    "label": "🖥️\nPantallas",
+                    "type": "command",
+                    "command": "swaync-client -t && wdisplays"
+                },
+                {
+                    "label": "🔄\nActualizar",
+                    "type": "command",
+                    "command": "swaync-client -t && kitty sh -c 'sudo dnf upgrade && read'" 
+                }
+            ],
+            "wrap": true,
+            "columns": 2
+        },
+        "volume": {
+            "label": "🔊 Volumen"
+        },
+        "backlight": {
+            "label": "☀️ Brillo",
+            "device": "amdgpu_bl1"
+        },
+        "notifications": {
+            "vscroll": true,
+            "vexpand": true
+        },
+        "mpris": {
+            "show-artwork": true,
+            "image-size": 64,
+            "image-radius": 8
+        }
+    },
+    "scripts": {
+        "alert-sound": {
+            "exec": "paplay /usr/share/sounds/freedesktop/stereo/message.oga",
+            "app_name": ".*"
+        }
+    }
+}
