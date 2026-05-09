@@ -17,7 +17,9 @@ set $menu rofi -show drun -modes "drun,combi" -terminal '$term'
 
 # Configuración de salida (Escalado y Wallpaper)
 output * scale 1.25
-output * bg /home/javier/Imágenes/fondo/608170.jpg fill
+# Usa la variable de entorno HOME para máxima portabilidad
+output * bg $HOME/.config/sway/wallpapers/608170.jpg fill
+bindsym $mod+Mod1+w exec ~/.config/sway/cambiar_fondo.sh
 
 # Cursor de sistema
 seat * xcursor_theme KayokoCursor 64
@@ -27,6 +29,7 @@ seat * xcursor_theme KayokoCursor 64
 # =============================================================================
 # Notificaciones (Matamos mako y lanzamos SwayNC)
 exec pkill mako; swaync
+exec_always $HOME/.local/bin/autotiling
 
 # Temas GTK y Apariencia de interfaz
 exec_always {
@@ -59,6 +62,7 @@ bindsym $mod+Return  exec $term
 bindsym $mod+d       exec $menu
 bindsym $mod+t       exec thunar
 bindsym $mod+b       exec brave-browser
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Gestión de Sesión
 bindsym $mod+Shift+q kill
@@ -134,7 +138,6 @@ bindsym $mod+Ctrl+Shift+Left move container to workspace prev, workspace prev
 bindsym $mod+Ctrl+Shift+Right move container to workspace next, workspace next
 
 
-# Modos de Layout
 bindsym $mod+Shift+b splith
 bindsym $mod+Shift+v splitv
 bindsym $mod+s       layout stacking

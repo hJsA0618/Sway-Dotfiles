@@ -3,12 +3,14 @@
     "layer": "top",
     "position": "top",
     "height": 38, 
+	"margin-top": 4,
     "spacing": 0,
     
     "modules-left": ["sway/workspaces", "sway/mode", "group/reproductor"],
     "modules-center": ["sway/window"],
     "modules-right": [
         "pulseaudio", 
+        "pulseaudio#microphone",
         "power-profiles-daemon", 
         "backlight", 
         "battery", 
@@ -26,7 +28,7 @@
         "max-length": 50,
         "separate-outputs": true,
         "format": "{}",
-        "rewrite": { "": " Win + D to run" } // Restaurado el pingüino
+        "rewrite": { "": " Win + D to run" }
     },
 
     "group/reproductor": {
@@ -52,20 +54,20 @@
             "Paused": "",
             "Stopped": ""
         },
-        // Cambiado para que use mayúsculas y no desaparezca si no hay música
         "exec": "playerctl -a metadata --format '{\"alt\": \"{{status}}\"}' -F 2>/dev/null || echo '{\"alt\": \"Stopped\"}'",
         "on-click": "playerctl play-pause",
         "tooltip": false
     },
 
-	"sway/scratchpad": {
-	    "format": "{icon}",
-	    "show-empty": true, // IMPORTANTE: Ahora sí queremos que se muestre siempre
-	    "format-icons": ["", ""], // El primero (auriculares o nota vacía) aparece cuando no hay nada
-	    "on-click": "swaymsg scratchpad show",
-	    "tooltip": true,
-	    "tooltip-format": "{app}: {title}"
-	},
+    "sway/scratchpad": {
+        "format": "{icon}",
+        "show-empty": true,
+        "format-icons": ["", ""],
+        "on-click": "swaymsg scratchpad show",
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+
     "custom/prev": { "format": "", "on-click": "playerctl previous", "tooltip": false },
     "custom/next": { "format": "", "on-click": "playerctl next", "tooltip": false },
 
@@ -76,6 +78,17 @@
         "format-icons": { "headphone": "", "default": ["", "", ""] },
         "on-click": "pavucontrol"
     },
+
+	"pulseaudio#microphone": {
+	        "format": "{format_source}",
+	        "format-source": "",
+	        "format-source-muted": "",
+	        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+	        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+",
+	        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-",
+	        "tooltip": true,
+	        "tooltip-format": "Micro: {volume}%"
+	},
 
     "battery": {
         "states": { "warning": 30, "critical": 20 },
@@ -91,9 +104,19 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
 
-    "backlight": { "device": "intel_backlight", "format": "{percent}% {icon}", "format-icons": ["", ""] },
+    "backlight": { 
+        "device": "intel_backlight", 
+        "format": "{percent}% {icon}", 
+        "format-icons": ["", ""] 
+    },
+
     "power-profiles-daemon": {
         "format": "{icon}",
         "format-icons": { "default": "", "performance": "", "balanced": "", "power-saver": "" }
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     }
 }

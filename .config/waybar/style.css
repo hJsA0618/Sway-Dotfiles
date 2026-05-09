@@ -35,7 +35,7 @@ window#waybar {
 /* --- BLOQUE CENTRAL (WINDOW) --- */
 #window {
     background-color: rgba(43, 48, 59, 0.85);
-    color: #c792ea;
+    color: #ffffff;
     border-radius: 18px;
     margin: 3px 0;
     padding: 0 20px;
