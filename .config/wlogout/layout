@@ -5,6 +5,12 @@
     "keybind" : "l"
 }
 {
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "SUSPEND",
+    "keybind" : "s"
+}
+{
     "label" : "logout",
     "action" : "swaymsg exit",
     "text" : "LOGOUT",
@@ -17,14 +23,14 @@
     "keybind" : "h"
 }
 {
-    "label" : "shutdown",
-    "action" : "systemctl poweroff",
-    "text" : "SHUTDOWN",
-    "keybind" : "u"
-}
-{
     "label" : "reboot",
     "action" : "systemctl reboot",
     "text" : "REBOOT",
     "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "SHUTDOWN",
+    "keybind" : "u"
 }
