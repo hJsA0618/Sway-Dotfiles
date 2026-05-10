@@ -22,7 +22,10 @@ Este comando instala el gestor de ventanas, utilidades de imagen y el sistema de
 ```bash
 sudo dnf install sway kitty rofi thunar brave-browser swaync wlogout \
 swaylock grim slurp jq gsettings-desktop-schemas papirus-icon-theme \
-waybar ranger python3-pip swaybg libnotify
+waybar ranger python3-pip swaybg libnotify \
+poppler-utils ffmpegthumbnailer ImageMagick \
+brightnessctl wireplumber network-manager-applet polkit-gnome \
+wl-clipboard xdg-desktop-portal-wlr
 
 ```
 
