@@ -67,7 +67,7 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
 # Gestión de Sesión
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+w exec wlogout -b 5
+bindsym $mod+Shift+w exec wlogout -b 6
 bindsym $mod+Escape  exec swaylock -f -i /home/javier/Imágenes/fondo/1102269.jpg
 bindsym $mod+Shift+e exec swaynag -t warning -m '¿Deseas salir de Sway?' -B 'Sí, salir' 'swaymsg exit'
 

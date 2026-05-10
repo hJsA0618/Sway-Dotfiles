@@ -14,15 +14,23 @@ button {
   background-position: center;
   background-size: 25%;
   background-clip: padding-box;
-  border-radius: 30px;
+  border-radius: 20px;
+  
+  /* Ajustes de espaciado vertical */
   margin-top: 125px;
   margin-bottom: 125px;
-  margin-left: 4px;
-  margin-right: 4px;
-  min-width: 200px;
-  border-width: 16px;
+
+  /* REDUCCIÓN DE ESPACIADO LATERAL */
+  margin-left: 2px;   /* Antes estaba en 10px o 4px */
+  margin-right: 2px;  /* Antes estaba en 10px o 4px */
+  
+  /* Ancho mínimo ligeramente menor para compactar más */
+  min-width: 150px;   
+  
+  /* Reducir el borde exterior para que se toquen casi totalmente */
+  border-width: 4px;  /* Antes estaba en 16px u 8px */
   border-color: #21222c;
-  font-size: large;
+  font-size: medium;
 }
 
 button:focus, button:active, button:hover {
@@ -54,4 +62,5 @@ button:focus, button:active, button:hover {
 #logout {
   background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
 }
+
 
