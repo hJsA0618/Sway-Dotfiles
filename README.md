@@ -1,7 +1,6 @@
 
-# 💜 Javier's Sway Dotfiles (Amethyst Edition)
-
-Configuración personalizada para **SwayWM** optimizada para **Fedora** (específicamente Fedora Sway Spin). Un entorno de ventanas tipo "tiling" con estética violeta vibrante, enfoque en la productividad y acomodo automático.
+# Javier dotfiles
+Mi primer configuración basica de mi Swa aprender a configurar un entorno desde 0. Un entorno de ventanas tipo "tiling" con el resalto de usar colores en azul, enfoque en la productividad y acomodo automático.
 
 ---
 
@@ -38,65 +37,5 @@ pip install autotiling
 
 ```
 
-### 4. Desplegar configuración
-
-Copia los archivos y otorga permisos de ejecución al script de wallpapers:
-
-```bash
-cp -r .config/* ~/.config/
-cp -r .icons ~/.icons
-cp -r .themes ~/.themes
-chmod +x ~/.config/sway/cambiar_fondo.sh
-
-```
-
----
-
-## 🎨 Apariencia
-
-| Componente | Detalle |
-| --- | --- |
-| **Tema GTK** | `Dream-Violet-Dark-GTK` |
-| **Iconos** | `Papirus-Dark` |
-| **Cursor** | `KayokoCursor (64px)` |
-| **Terminal** | `Kitty` |
-| **Notificaciones** | `SwayNC` |
-
----
-
-## ⌨️ Atajos de Teclado Principales
-
-La tecla **Super** (Windows) es `$mod`.
-
-### Aplicaciones
-
-* `$mod + Enter` → Abrir Terminal (Kitty)
-* `$mod + d` → Lanzador Rofi (Apps y Combi)
-* `$mod + t` → Gestor de archivos (Thunar)
-* `$mod + b` → Navegador (Brave)
-* `$mod + Shift + n` → Panel de notificaciones
-
-### Sistema y Sesión
-
-* `$mod + Shift + c` → Recargar configuración
-* `$mod + Shift + q` → Cerrar ventana enfocada
-* `$mod + Shift + w` → Menú de apagado (wlogout)
-* `$mod + Alt + w` → **Cambiar Wallpaper (Aleatorio)** 🚀
-* `$mod + Escape` → Bloquear pantalla (swaylock)
-* `$mod + Control + k` → Cambiar idioma del teclado (ES / Latam)
-* `$mod + Shift + Print` → Captura de pantalla (seleccionar zona)
-
-### Ventanas
-
-* `$mod + h/j/k/l` → Mover foco (estilo Vim)
-* `$mod + flechas` → Mover foco
-* `$mod + f` → Pantalla completa
-* `$mod + r` → Modo Redimensionar (Esc para salir)
-* `$mod + Shift + Espacio` → Alternar modo flotante
-
----
-
-## 🚀 Notas adicionales
-
-* **Wallpaper Dinámico:** El sistema busca imágenes automáticamente en `~/.config/sway/wallpapers/`. Al cambiar el fondo, recibirás una notificación con la miniatura de la imagen.
-* **Barra:** Se incluye configuración optimizada para `waybar` en `.config/waybar`.
+### 4 
+tenemos que se usa punteros para amyor facilidad. que quiere decir es que tu al copiar los dotfiles en tu carpeta personal esta apunta a los ~.config para mayor portabilidad sin tener que estar copiando tus archivos manualmente.
