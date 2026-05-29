@@ -1,69 +1,67 @@
 configuration {
-    font: "JetBrainsMono Nerd Font Mono 12";
-    
-    /* Habilitar iconos globalmente */
+    font: "JetBrainsMono Nerd Font 14";
     show-icons: true;
-    
-    /* Usar el mismo tema que definiste en tu Sway config */
     icon-theme: "Papirus-Dark";
-    
-    /* Modos: drun primero, luego combi */
     modes: [ "drun", "combi" ];
     combi-modes: [ "drun", "run" ];
-    
-    /* Formato de la lista: icono y luego nombre */
     drun-display-format: "{icon} {name}";
-    
-    /* Ordenar por uso */
     sort: true;
     sorting-method: "fzf";
     disable-history: false;
-
-    /* Etiquetas de modo */
     display-drun: "Apps";
     display-combi: "Combi";
+    display-run: "💻 Ejecutar";
 }
 
-/* --- ESTILO AMETHYST VERTICAL --- */
+/* --- ESTILO ESTILO WAYBAR CORREGIDO --- */
 
 * {
-	font: "JetBrainsMono Nerd Font 12";
-    bg: #1a1a2e;       /* Fondo oscuro profundo */
-    fg: #ffffff;       /* Texto blanco */
-    accent: #bf00ff;   /* Morado Neón */
-    border-color: @accent;
+    /* Usamos HEX estándar para evitar errores de parseo */
+    bg-base:     #2B303B; 
+    bg-selected: #5A6EE0;   
+    fg-main:     #FFFFFF;
+    accent:      #5A6EE0;
+    
+    background-color: transparent;
+    text-color: @fg-main;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
 }
 
 window {
-    background-color: @bg;
-    border: 4px;       /* Grosor igual al de tus ventanas en Sway */
-    width: 30%;        /* Un poco más angosto para la lista vertical */
-    padding: 15px;
-    border-radius: 12px;
+    /* La transparencia la aplicamos aquí con el formato de Rofi */
+    background-color: rgba(43, 48, 59, 85%); 
+    border: 2px;
+    border-color: @accent;
+    border-radius: 18px;   
+    width: 35%;
+    padding: 20px;
 }
 
 inputbar {
-    children: [ prompt, entry ];
     padding: 10px;
-    background-color: @bg;
+    margin: 0 0 15px 0;
+    background-color: rgba(0, 0, 0, 20%);
+    border-radius: 12px;
+    children: [ prompt, entry ];
 }
 
 prompt {
     background-color: @accent;
-    text-color: @bg;
-    padding: 5px 10px;
-    border-radius: 5px;
+    text-color: @fg-main;
+    padding: 8px 15px;
+    border-radius: 10px;
 }
 
 entry {
-    padding: 5px;
-    text-color: @fg;
+    padding: 8px;
+    text-color: @fg-main;
 }
 
-/* LISTA DE ELEMENTOS (Modo Vertical) */
 listview {
-    columns: 1;        /* Lista simple hacia abajo */
-    lines: 10;         /* Muestra hasta 10 elementos */
+    columns: 1;
+    lines: 8;
     spacing: 8px;
     cycle: true;
     dynamic: true;
@@ -72,16 +70,20 @@ listview {
 }
 
 element {
-    padding: 10px;     /* Más espacio para que sea fácil hacer clic */
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 12px;
 }
 
 element selected {
-    background-color: @accent;
-    text-color: @bg;
+    background-color: @bg-selected;
+    text-color: @fg-main;
 }
 
 element-icon {
     size: 32px;
     padding: 0 15px 0 0;
+}
+
+element-text {
+    vertical-align: 0.5;
 }

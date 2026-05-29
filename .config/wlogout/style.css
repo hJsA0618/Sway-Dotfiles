@@ -4,39 +4,37 @@
 }
 
 window {
-  background-color: rgba(0,0,0,0.15);
+  /* Fondo oscuro semi-transparente similar a tu Rofi/Waybar */
+  background-color: rgba(26, 30, 51, 0.7);
 }
 
 button {
   color: #f8f8f2;
-  background-color: #282a36;
+  /* Color base de Ichigo */
+  background-color: #292F50; 
   background-repeat: no-repeat;
   background-position: center;
   background-size: 25%;
   background-clip: padding-box;
   border-radius: 20px;
   
-  /* Ajustes de espaciado vertical */
   margin-top: 125px;
   margin-bottom: 125px;
-
-  /* REDUCCIÓN DE ESPACIADO LATERAL */
-  margin-left: 2px;   /* Antes estaba en 10px o 4px */
-  margin-right: 2px;  /* Antes estaba en 10px o 4px */
-  
-  /* Ancho mínimo ligeramente menor para compactar más */
+  margin-left: 2px;
+  margin-right: 2px;
   min-width: 150px;   
   
-  /* Reducir el borde exterior para que se toquen casi totalmente */
-  border-width: 4px;  /* Antes estaba en 16px u 8px */
-  border-color: #21222c;
+  border-width: 4px;
+  /* Borde un poco más oscuro para dar profundidad */
+  border-color: #1A1E33; 
   font-size: medium;
 }
 
 button:focus, button:active, button:hover {
-  background-color: #bd93f9;
+  /* Cambio del morado Dracula al azul neón de tu Waybar */
+  background-color: #5a6ee0; 
+  border-color: #ffffff;
   outline-style: none;
-  
 }
 
 #lock {
@@ -62,5 +60,3 @@ button:focus, button:active, button:hover {
 #logout {
   background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
 }
-
-

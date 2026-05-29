@@ -28,8 +28,10 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    background-color: #c792ea;
-    color: #1a1a2e;
+    background-color: #5a6ee0;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(90, 110, 224, 0.9), 0 0 6px rgba(90, 110, 224, 0.6);
+    transition: all 0.2s ease;
 }
 
 /* --- BLOQUE CENTRAL (WINDOW) --- */
@@ -69,12 +71,12 @@ window#waybar {
     background-color: rgba(43, 48, 59, 0.85);
 }
 
-/* --- REPRODUCTOR (EL FONDITO GRIS) --- */
+/* --- REPRODUCTOR --- */
 #reproductor {
     background-color: rgba(43, 48, 59, 0.85);
     margin: 3px 0 3px 10px;
     border-radius: 18px;
-    padding: 0 8px; /* Padding equilibrado para centrar el contenido */
+    padding: 0 8px;
 }
 
 /* Estilo para los botones de control */
@@ -82,23 +84,27 @@ window#waybar {
 #custom-playerctl, 
 #custom-next {
     background-color: transparent; 
-    color: #c792ea; 
+    color: #5a6ee0;
     padding: 0 6px;
     margin: 0;
+    text-shadow: 0 0 10px rgba(90, 110, 224, 0.8);
+    transition: all 0.2s ease;
 }
 
-/* --- SCRATCHPAD CENTRADO Y MORADO --- */
+/* --- SCRATCHPAD CENTRADO --- */
 #scratchpad {
     background-color: transparent;
-    color: #c792ea; /* Morado brillante */
-    padding: 0 8px; /* Padding igual en ambos lados para centrar */
+    color: #5a6ee0;
+    padding: 0 8px;
     margin: 0;
-    min-width: 20px; /* Asegura un espacio mínimo para que no se vea apretado */
+    min-width: 20px;
+    text-shadow: 0 0 10px rgba(90, 110, 224, 0.8);
 }
 
-/* Estado cuando no hay nada (opcional: ponerlo un pelín más oscuro si prefieres) */
+/* Estado cuando no hay nada */
 #scratchpad.empty {
-    color: rgba(199, 146, 234, 0.5);
+    color: rgba(90, 110, 224, 0.5);
+    text-shadow: 0 0 5px rgba(90, 110, 224, 0.4);
 }
 
 /* Animaciones y Estados */
@@ -116,16 +122,20 @@ window#waybar {
 #custom-next:active {
     padding-top: 4px;
     color: #ffffff;
+    text-shadow: none;
 }
 
 /* --- TOOLTIPS --- */
 tooltip {
     background-color: rgba(43, 48, 59, 0.95);
-    border: 2px solid #c792ea;
+    border: 2px solid #5a6ee0;
     border-radius: 12px;
+    box-shadow: 0 0 12px rgba(90, 110, 224, 0.5);
 }
 
 tooltip label { 
     color: #ffffff; 
     padding: 8px; 
 }
+
+

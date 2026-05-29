@@ -12,13 +12,19 @@ set $down j
 set $up k
 set $right l
 
+
 # Lanzador de aplicaciones (Rofi)
 set $menu rofi -show drun -modes "drun,combi" -terminal '$term'
+
+#waybar
+exec waybar -C ~/.config/waybar-sway
 
 # Configuración de salida (Escalado y Wallpaper)
 output * scale 1.25
 # Usa la variable de entorno HOME para máxima portabilidad
 output * bg $HOME/.config/sway/wallpapers/608170.jpg fill
+#para cambiar de fondo cada que se inicie sesion
+exec ~/.config/sway/cambiar_fondo.sh
 bindsym $mod+Mod1+w exec ~/.config/sway/cambiar_fondo.sh
 
 # Cursor de sistema
@@ -105,6 +111,24 @@ bindsym $mod+Shift+Right  move right
 # =============================================================================
 # 6. WORKSPACES Y LAYOUT
 # =============================================================================
+
+# Cambiar al siguiente/anterior espacio de trabajo con 3 dedos
+bindgesture swipe:left workspace prev
+bindgesture swipe:right workspace next
+
+# // atajos opcionales // 
+#			|
+#			v
+
+#indgesture swipe:down scratchpad show
+#bindgesture swipe:up scratchpad show
+
+# Permite mover los contenedores pellizcándolos
+#bindgesture pinch:inward+up move up
+#bindgesture pinch:inward+down move down
+#bindgesture pinch:inward+left move left
+#bindgesture pinch:inward+right move right
+
 # Cambio de Workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -136,8 +160,6 @@ bindsym $mod+Control+Right workspace next_on_output
 # Mover ventana a los worskpace de los lados (Ctrl + Win + Shift + Flechas)
 bindsym $mod+Ctrl+Shift+Left move container to workspace prev, workspace prev
 bindsym $mod+Ctrl+Shift+Right move container to workspace next, workspace next
-
-
 bindsym $mod+Shift+b splith
 bindsym $mod+Shift+v splitv
 bindsym $mod+s       layout stacking
@@ -186,11 +208,11 @@ default_border pixel 4
 floating_modifier $mod normal
 
 # Esquema de Colores
-# Estructura: [borde] [fondo] [texto] [indicador] [borde_hijo]
-client.focused           #bf00ff #1a1a2e #ffffff #bf00ff #bf00ff
-client.focused_inactive  #4b0082 #1a1a2e #888888 #4b0082 #1a1a2e
-client.unfocused         #2a2a2a #1a1a2e #888888 #2a2a2a #1a1a2e
-client.urgent            #ff5555 #ff5555 #ffffff #ff5555 #ff5555
+# Estructura:            [borde]   [fondo]   [texto]   [indicador] [borde_hijo]
+client.focused           #5A6EE0   #292F50   #ffffff   #87CEEB     #5A6EE0
+client.focused_inactive  #1A1E33   #1A1E33   #888888   #1A1E33     #1A1E33
+client.unfocused         #141726   #141726   #555555   #141726     #141726
+client.urgent            #FF5555   #FF5555   #ffffff   #FF5555     #FF5555
 
 # =============================================================================
 # 10. INCLUDES EXTERNOS

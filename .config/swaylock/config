@@ -1,12 +1,23 @@
-# Fondo de pantalla - Usando $HOME para portabilidad
+# Fondo de pantalla
 image=$HOME/.config/sway/wallpapers/1102269.jpg
-
-# Ajustar la imagen (fill, stretch, center, etc.)
 scaling=fill
 
-# Colores estéticos (opcional, estilo Amethyst/Miku)
-ring-color=c792ea
-key-hl-color=ffffff
+# Colores estéticos (ICHIGO HIGH-CONTRAST)
+# El 'ring' es el borde; lo ponemos en el azul neón más claro para que destaque
+ring-color=5a6ee0
+
+# El 'inside' es el fondo del círculo; usamos el azul oscuro Ichigo
+inside-color=292f50ee    # Subimos la opacidad (ee) para que no sea tan transparente
+
+# El anillo cuando escribes (resalte de teclas)
+key-hl-color=87ceeb      # Azul cielo brillante (contrasta con el azul neón)
+
+# Color cuando te equivocas (Rojo Ichigo/Franxx)
+wrong-color=ff5555
+
+# Colores de bordes y separadores (transparentes para limpieza visual)
 line-color=00000000
-inside-color=1a1a2e88
 separator-color=00000000
+
+# Texto (Blanco puro para máxima lectura)
+text-color=ffffff

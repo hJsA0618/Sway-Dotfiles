@@ -1,0 +1,7 @@
+hey! thank you for trying out this theme!
+
+IMPORTANT: Please DO NOT keep / extract the gtk-4.0 and gtk-3.0 folders inside the global/user themes folder I.E. ~/.local/share/themes or ~/.themes/ or usr/share/themes/ as it could cause the gnome shell to freeze the entire desktop in which case- you have to MANUALLY remove them from such folders using TTY(terminal) from login screen!
+
+copy the gtk-4.0 and gtk-3.0 folders into ~/.config/
+other than this, everything should work as intended!
+Cheers!

@@ -1,0 +1,589 @@
+
+
+/********************************************************************************/
+/* --- POLKIT / PASSWORD PROMPT MAGIC --- */
+.user-icon {
+  background-size: contain;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 9999px;
+  icon-size: 164px;
+}
+.user-icon:hover {
+  color: white;
+}
+.user-icon StIcon {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 99px;
+  padding: 12px;
+  width: 40px;
+  height: 40px;
+}
+.user-icon.user-avatar {
+  border: 2px rgba(255, 255, 255, 0.7);
+}
+.user-widget.vertical .user-icon {
+  icon-size: 128px;
+}
+.user-widget.vertical .user-icon StIcon {
+  padding: 20px;
+  padding-top: 18px;
+  padding-bottom: 22px;
+  width: 88px;
+  height: 88px;
+}
+/* 1. Shrink the main dialog width by 20-30% */
+.modal-dialog {
+    width: 320px; /* Forces a much sleeker, thinner profile */
+    border-radius: 24px;
+    background-color: #1c1c2e; /* Your Blue-Grey */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Glow */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.55);
+}
+/* 2. Make the User Icon/Avatar massive (120px) */
+.modal-dialog .user-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px; /* Keep it perfectly circular */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin: 10px auto;
+}
+/* 3. Tighten up the spacing (Remove the 'empty' feel) */
+.prompt-dialog-main-layout {
+    spacing: 12px;
+    padding: 20px;
+}
+/* 4. Shrink the Password Entry field to match the sleek width */
+.prompt-dialog-password-entry {
+    width: 240px;
+    border-radius: 17px;
+    background-color: #1c1c2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* 5. Clean up buttons */
+.modal-dialog-button-box {
+    spacing: 10px;
+    padding-top: 10px;
+}
+.modal-dialog-button {
+    border-radius: 17px;
+}
+/**************************
+
+/* Target the Alt+F2 Run Dialog input field */
+.run-dialog-entry {
+    background-color: rgba(28, 28, 46, 1.0);
+    color: white;
+    font-weight: 999;
+    border: 1px solid rgba(160, 191, 232, 0.9);
+}
+/* The "Electric" Focus Glow */
+.run-dialog-entry:focus {
+    border-color: rgba(160, 191, 232, 0.9);
+    box-shadow: 0 0 10px 2px rgba(28, 28, 46, 1.0);
+    outline: none;
+    color: white;
+    font-weight: 999;
+}
+ /**************************popup OSD********************************/
+/* Target the container for the bar and icon */
+.osd-window {
+    background-color: rgba(40, 42, 54, 0.9);
+    border-radius: 20px;
+    border: 1px solid rgba(122, 162, 247, 0.6);
+}
+/* The actual bar background (the empty part) */
+.osd-window .level {
+    height: 12px;
+    -barlevel-active-background-color: rgba(84, 184, 255, 1.0); 
+    color: rgba(84, 184, 255, 1.0);
+
+    color: #7aa2f7;
+        /* Use RGBA here for the 'empty' part of the bar */
+    -barlevel-background-color: rgba(40, 42, 54, 0.4); 
+        opacity: 1.0; 
+}
+/* For the icon (White with glow) */
+.osd-window StIcon {
+    icon-size: 48px;
+    color: #ffffff;
+    /* Use -st-icon-style for modern shell versions if filter fails */
+    -st-icon-style: symbolic;
+    filter: drop-shadow(0 0 8px rgba(122, 162, 247, 0.8));
+}
+.osd-window {
+    /* Lower the last number (0.6) for more transparency on the main box */
+    background-color: rgba(40, 42, 54, 0.6); 
+}
+/****************************/
+stage {
+    -st-accent-color: #54b8ff; /* Hardcoded Neon Blue */
+    -st-accent-bg-color: rgba(28, 28, 46, 0.9);
+    -st-accent-fg-color: #ffffff;
+}
+
+/*************************************/
+
+/* THE SSID HAMMER: Fixes black/invisible text in menus */
+.quick-toggle-menu .popup-menu-item,
+.quick-toggle-menu .popup-menu-item StLabel,
+.quick-settings-menu .popup-menu-item .clutter-text,
+.quick-settings-menu .popup-menu-item label {
+    color: #ffffff !important;
+}
+
+/* THE NUCLEAR TOP-RIGHT RESET: Fixes "persistent buttons" */
+.quick-settings-system-indicator,
+.quick-settings-header .quick-settings-action-button,
+.quick-settings-header .quick-settings-action-button > StButton,
+.quick-settings-header .quick-settings-action-button > StWidget {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* THE HOVER: Top buttons (Power/Settings) get the Neon Blue Glow */
+.quick-settings-header .quick-settings-action-button:hover,
+.quick-settings-header .quick-settings-action-button:active,
+.quick-settings-header .quick-settings-action-button:checked {
+    background-color: rgba(28, 28, 46, 0.8) !important;
+    /* Neon Blue Glow + Purple Bloom */
+    box-shadow: 0 0 15px rgba(84, 184, 255, 0.5), 
+                inset 0 0 0 1px rgba(84, 184, 255, 0.9) !important;
+    border-radius: 99px; 
+}
+
+/* 1. NOTIFICATION CARDS & BANNERS */
+.message,
+.notification-banner {
+    color: #ffffff;
+    background-color: rgba(28, 28, 46, 0.95); /* Unified Navy */
+    border: 1px solid rgba(84, 184, 255, 0.3); /* Soft Edge Blue */
+    margin: 5px 10px;
+    padding: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6),
+                inset 0 0 15px rgba(84, 184, 255, 0.1);
+    border-radius: 20px !important;
+}
+
+/* Hover state for Notifications - The High-Voltage Bloom */
+.message:hover, 
+.message:focus,
+.notification-banner:hover {
+    background-color: rgba(28, 28, 46, 1.0);
+    border: 1px solid rgba(84, 184, 255, 0.9) !important;
+    box-shadow: 0 0 20px rgba(84, 184, 255, 0.6), 
+                inset 0 0 20px rgba(84, 184, 255, 0.3) !important;
+}
+
+/* Notification Action Buttons */
+.notification-button {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px !important;
+    margin: 4px;
+}
+
+.notification-button:focus,
+.notification-button:hover {
+    background-color: rgba(84, 184, 255, 0.6); /* Blue Neon Fill */
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(84, 184, 255, 0.8);
+}
+
+/* 2. ENTRIES & SEARCH */
+StEntry {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(84, 184, 255, 0.2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px !important;
+}
+
+.search-entry:focus {
+    border: 1px solid rgba(84, 184, 255, 0.9);
+    box-shadow: inset 0 0 10px rgba(84, 184, 255, 0.2);
+}
+
+/* 3. THE PANEL (Matches Window Navy) */
+#panel {
+    background-color: rgba(28, 28, 46, 0.9); 
+    height: 32px;
+    border-radius: 0px; 
+    border-bottom: 1px solid rgba(84, 184, 255, 0.3); /* Blue Accent Line */
+}
+
+/* --- THE WIZARD MENU SURFACES --- */
+.datemenu-menu,
+.quick-settings,
+.popup-menu-content {
+    background-color: #1c1c2e; 
+    border: 1px solid #7aa2f7; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Heavier shadow for depth */
+    color: #ffffff;
+    margin: 10px;
+    padding: 8px;
+}
+/* --- WIZARD QUICK SETTINGS & MENU INTERIORS --- */
+
+/* 1. GLOBAL TEXT & ICON COLOR */
+.quick-settings, 
+.datemenu-menu, 
+.popup-menu-content,
+.popup-menu-item,
+.message-list,
+.calendar,
+.quick-toggle,
+.quick-settings-tile {
+    color: #ffffff;
+}
+/***********************/
+/* FIX: Kill the separator line in toggles */
+.quick-toggle-separator {
+    background-color: transparent;
+    width: 0px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+/**************/
+/* 3. INDIVIDUAL TOGGLE STATES (The Base & Universal Hover) */
+.quick-toggle, 
+.quick-settings-tile {
+    background-color: rgba(255, 255, 255, 0.05); /* Clean dark base */
+    transition: all 150ms ease-out;
+}
+
+/* 5. SLIDER SYNC (Volume & Brightness Glowing Blue) */
+.slider {
+    -bar-level-active-background-color: rgba(84, 184, 255, 0.9);
+    -bar-level-background-color: rgba(255, 255, 255, 0.1);
+}
+.slider-handle {
+    background-color: #ffffff;
+    border: 2px solid rgba(84, 184, 255, 1.0);
+    box-shadow: 0 0 12px rgba(84, 184, 255, 0.8);
+}
+/* 6. SUB-MENU (The WiFi/BT Popout Lists) */
+.quick-toggle-menu {
+    border-radius: 20px;
+    padding: 8px;
+    margin: 8px 12px 0;
+    background-color: rgba(28, 28, 46, 1.0); 
+    color: #ffffff; 
+    border: 1px solid rgba(84, 184, 255, 0.4); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7),
+                inset 0 0 20px rgba(84, 184, 255, 0.2);
+}
+.quick-toggle-menu .popup-menu-item:focus, 
+.quick-toggle-menu .popup-menu-item:hover {
+    background-color: rgba(84, 184, 255, 0.2);
+    color: #ffffff;
+    box-shadow: inset 0 0 10px rgba(84, 184, 255, 0.2);
+}
+/* 7. ICON SPECIFICITY */
+.quick-settings StIcon,
+.popup-menu-item StIcon,
+.message StIcon,
+.quick-toggle StIcon,
+.quick-toggle-menu-button StIcon {
+    color: #ffffff; /* Forced white icons for clarity */
+    -st-icon-style: symbolic;
+}
+/**********************************************************/
+/* --- V5: THE "EDGE MEDIA" NEON GLOW --- */
+
+/* Hover state: Brightens the teal slightly */
+.quick-settings .icon-button:hover,
+.quick-settings-system-menu StButton:hover {
+  background-color: rgba(84, 184, 255, 0.3) !important;
+
+}
+
+/* 2. THE SELECTION / ACTIVE STATE (Matches Media Player) */
+.quick-settings .icon-button,
+.quick-toggle:checked,
+.quick-settings-tile:checked,
+.quick-toggle-menu-button:checked {
+    /* Base dark color from your variables */
+    background-color: rgba(28, 28, 46, 0.9) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(84, 184, 255, 0.6); /* The "Glass" edge */    
+    /* THE MAGIC: Inset shadows to create that inner blue depth */
+    box-shadow: inset 0 0 20px 2px rgba(84, 184, 255, 0.3),
+                inset 0 0 10px 0 rgba(84, 184, 255, 0.2), 
+                0 8px 15px rgba(0, 0, 0, 0.5) !important;                
+    /* Adds a slight vertical gradient to mimic the lighting in the image */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.1), transparent);
+}
+
+.popup-menu-item:hover,
+.popup-menu-item:focus {
+    /* Base dark color from your variables */
+    background-color: rgba(28, 28, 46, 0.9) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(84, 184, 255, 0.6); /* The "Glass" edge */    
+    /* THE MAGIC: Inset shadows to create that inner blue depth */
+    box-shadow: inset 0 0 20px 2px rgba(84, 184, 255, 0.3),
+                inset 0 0 10px 0 rgba(84, 184, 255, 0.2), 
+                0 8px 15px rgba(0, 0, 0, 0.5) !important;                
+    /* Adds a slight vertical gradient to mimic the lighting in the image */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.1), transparent);
+}
+
+/* 3. THE HOVER STATE (High-Voltage Glow) */
+.quick-toggle:hover, 
+.quick-settings-tile:hover,
+.quick-toggle-menu-button:hover {
+    /* Brighter background shift */
+    background-color: rgba(45, 45, 75, 0.95) !important; 
+    color: #ffffff; 
+    /* THE GLOW: Intense inner blue + subtle outer purple bloom */
+    box-shadow: inset 0 0 15px 2px rgba(84, 184, 255, 0.5),
+                inset 0 0 30px 0 rgba(84, 184, 255, 0.9),
+                0 0 0 1px rgba(84, 184, 255, 0.8),
+                0 0 15px 0 rgba(84, 184, 255, 0.4) !important;               
+    /* Brighter top-down lighting */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.25), transparent) !important;    
+    transition: all 150ms ease-out; /* Makes the "pop" feel snappier */
+}
+/* 4. SYNCING THE SUB-MENUS (WiFi lists etc.) */
+.quick-toggle-menu {
+    background-color: rgba(28, 28, 46, 1.0);
+    border: 1px solid rgba(84, 184, 255, 1.0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.666),
+                inset 0 0 2px rgba(84, 184, 255, 0.2) !important;
+
+}
+/*******************/
+* {
+    border-radius: 30px !important;
+}
+/*********************/
+/* 1. Define the colors at the top so the Shell understands them */
+@define-color shell_view_bg rgba(28, 28, 46, 0.8);
+@define-color shell_view_fg #ffffff;
+
+/* 2. Now apply them to the calendar nodes */
+.calendar-day-base {
+  background-color: @shell_view_bg;
+  border-radius: 99px;
+}
+
+/* 3. Hover state using a safe alpha function */
+.calendar-day-base:hover,
+.calendar-day-base:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+/* Base style for all calendar day circles */
+.calendar-day-base,
+.calendar-day {
+  /* Slightly lighter than your 0.8 body for contrast */
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 99px;
+  border: 1px solid transparent !important;
+  transition-duration: 100ms;
+}
+
+/* Hover state - making it "pop" when you move the mouse */
+.calendar-day-base:hover,
+.calendar-day:hover,
+.calendar-day-base:focus,
+.calendar-day:focus {
+    background-color: rgba(45, 45, 75, 0.95); 
+    color: #ffffff; 
+    /* THE GLOW: Intense inner blue + subtle outer purple bloom */
+    box-shadow: inset 0 0 15px 2px rgba(84, 184, 255, 0.5),
+                inset 0 0 30px 0 rgba(84, 184, 255, 0.2),
+                0 0 0 1px rgba(84, 184, 255, 0.8),
+                0 0 15px 0 rgba(84, 184, 255, 0.4);               
+    /* Brighter top-down lighting */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.25), transparent);    
+    transition: all 150ms ease-out; /* Makes the "pop" feel snappier */
+}
+
+/* Today's date circle (using your accent blue) */
+.calendar-today {
+  background-color: #7aa2f7 !important;
+  color: #1c1c2e !important;
+  font-weight: bold !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Days from other months - keep them subtle */
+.calendar-other-month-day {
+  background-color: transparent !important;
+  opacity: 0.3 !important;
+}
+/* Month Name and Arrows Container */
+.calendar-month-label {
+  color: #ffffff !important;
+  font-weight: bold !important;
+  padding: 8px 0;
+}
+
+/* Navigation Arrows ( < and > ) */
+.calendar-change-month-back,
+.calendar-change-month-forward {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  border-radius: 99px;
+  padding: 8px;
+  margin: 0 4px;
+}
+
+/* Arrow Hover Effect */
+.calendar-change-month-back:hover,
+.calendar-change-month-forward:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Weekday Labels (S, M, T, W, T, F, S) */
+.calendar-day-heading {
+  color: rgba(255, 255, 255, 0.5) !important; /* Slightly faded for hierarchy */
+  font-weight: normal !important;
+  padding-top: 12px;
+  background-color: transparent !important;
+}
+/* Weekday Labels (S, M, T, W...) */
+.calendar-day-heading {
+  color: #7aa2f7 !important; /* Your blue accent */
+  font-weight: bold !important;
+  font-size: 0.9em;
+  padding-bottom: 8px;
+}
+.calendar-change-month-back,
+.calendar-change-month-forward {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+.calendar-month-label {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 99px;
+  padding: 4px 20px !important;
+}
+/*************************************/
+
+/* Target the sub-menus (like the Vitals dropdown list) */
+.sub-menu,
+.popup-sub-menu {
+  background-color: rgba(28, 28, 46, 0.8) !important; /* Your @view_bg_color */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 5px;
+}
+
+/* Target the Screen Capture/Screenshot menu specifically */
+.screenshot-ui-panel,
+.screenshot-ui-menu {
+  background-color: rgba(28, 28, 46, 0.8) !important;
+  border-radius: 24px; /* More rounded for the capture pill */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Target the buttons inside the Screenshot UI (Capture, Record, Selection types) */
+.screenshot-ui-panel StButton,
+.screenshot-ui-panel .button,
+.screenshot-ui-type-button,
+.screenshot-ui-capture-button {
+  background-color: rgba(56, 56, 92, 0.55) !important; /* Your Teal Navy magic */
+  color: #ffffff !important;
+  border-radius: 99px !important;
+  border: 1px solid rgba(122, 247, 216, 0.15) !important;
+}
+
+/* Hover state for those buttons */
+.screenshot-ui-panel StButton:hover,
+.screenshot-ui-type-button:hover {
+  background-color: rgba(102, 102, 184, 0.55) !important;
+  border-color: rgba(150, 180, 216, 0.3) !important;
+}
+
+/* The 'Active' state (the one that shows you're on 'Selection' or 'Screen') */
+.screenshot-ui-panel StButton:checked,
+.screenshot-ui-type-button:checked {
+  background-color: #7aa2f7 !important; /* Your accent blue */
+  color: #1c1c2e !important;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Fix any lingering grey in the sub-menu buttons (like Vitals/Settings) */
+.sub-menu StButton,
+.popup-sub-menu StButton {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 8px;
+  color: #ffffff !important;
+}
+
+/* Fix for internal 'section' boxes that often stay grey */
+.popup-menu-section {
+  background-color: transparent !important;
+}
+
+/* Match the hover states for items inside these menus */
+.sub-menu .popup-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+/**********************/
+
+/* Target the action buttons at the bottom of the Vitals / Extension menus */
+.popup-menu-item StButton.button,
+.popup-menu-item .button,
+.vitals-menu-action-button {
+    /* Base dark color from your variables */
+    background-color: rgba(28, 28, 46, 0.9) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(84, 184, 255, 0.6); /* The "Glass" edge */    
+    /* THE MAGIC: Inset shadows to create that inner blue depth */
+    box-shadow: inset 0 0 20px 2px rgba(84, 184, 255, 0.3),
+                inset 0 0 10px 0 rgba(84, 184, 255, 0.2), 
+                0 8px 15px rgba(0, 0, 0, 0.5) !important;                
+    /* Adds a slight vertical gradient to mimic the lighting in the image */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.1), transparent) !important;
+}
+
+/* Hover state to make them interactive */
+.popup-menu-item StButton.button:hover,
+.vitals-menu-action-button:hover {
+  background-color: rgba(32, 72, 89, 1.0) !important;
+  border: 2px solid rgba(122, 247, 216, 0.3) !important;
+}
+
+/* The 'active' state for the middle button if it's toggled on */
+.popup-menu-item StButton.button:checked,
+.vitals-menu-action-button:checked {
+    /* Base dark color from your variables */
+    background-color: rgba(28, 28, 46, 0.9) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(84, 184, 255, 0.6); /* The "Glass" edge */    
+    /* THE MAGIC: Inset shadows to create that inner blue depth */
+    box-shadow: inset 0 0 20px 2px rgba(84, 184, 255, 0.3),
+                inset 0 0 10px 0 rgba(84, 184, 255, 0.2), 
+                0 8px 15px rgba(0, 0, 0, 0.5) !important;                
+    /* Adds a slight vertical gradient to mimic the lighting in the image */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.1), transparent);
+}
+/***************/
+
+/* Target the active/selected item in the Vitals menu */
+.popup-menu-item:active,
+.popup-menu-item:checked,
+.popup-sub-menu .popup-menu-item:checked {
+    /* Base dark color from your variables */
+    background-color: rgba(28, 28, 46, 0.9) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(84, 184, 255, 0.6); /* The "Glass" edge */    
+    /* THE MAGIC: Inset shadows to create that inner blue depth */
+    box-shadow: inset 0 0 20px 2px rgba(84, 184, 255, 0.3),
+                inset 0 0 10px 0 rgba(84, 184, 255, 0.2), 
+                0 8px 15px rgba(0, 0, 0, 0.5) !important;                
+    /* Adds a slight vertical gradient to mimic the lighting in the image */
+    background-image: linear-gradient(to bottom, rgba(84, 184, 255, 0.1), transparent);
+}
+
+/* Ensure the checkmark icon matches your accent blue */
+.popup-menu-item:checked .popup-menu-ornament {
+    color: #7aa2f7 !important;
+}
+
